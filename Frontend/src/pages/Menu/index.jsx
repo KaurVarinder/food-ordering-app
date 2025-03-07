@@ -13,8 +13,13 @@ const Menu = () => {
     const [activeTabIndex, setActiveTabIndex] = useState(0);
 
     useEffect(() => {
-        dispatch(fetchProducts());
+        console.log("Fetching products...");
+        dispatch(fetchProducts())
+          .unwrap()
+          .then((data) => console.log("Fetched products:", data))
+          .catch((error) => console.log("Error fetching products:", error));
     }, [dispatch]);
+    
 
     const onAddProduct = (product) => {
         dispatch(addToCart(product));
