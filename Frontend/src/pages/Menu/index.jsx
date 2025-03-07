@@ -88,11 +88,14 @@ const Menu = () => {
 
     const onTabSwitch = (newActiveTab) => {
         setActiveTab(newActiveTab);
-        let categories = products.products.map((product) => product.name?.name || product.name || "Unnamed");
-
+        
+        // ✅ Fix category name access
+        let categories = products.products.map((category) => category.name || "Unnamed");
+        
         let index = categories.findIndex(category => newActiveTab === category);
         setActiveTabIndex(index > -1 ? index : 0);
     };
+    
 
     return (
         <div className="bg-white">

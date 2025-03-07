@@ -43,13 +43,15 @@ export const fetchProducts = createAsyncThunk('products/fetchProducts', async ()
             throw new Error("Failed to fetch products");
         }
         const data = await response.json();
-        console.log("Fetched products:", JSON.stringify(data, null, 2)); // ✅ Full API response for debugging
-        return data?.data || [];
+
+        console.log("📌 API Response:", JSON.stringify(data, null, 2)); // ✅ Check response structure
+        return data?.data || []; // Ensure it's always an array
     } catch (error) {
         console.error("API fetch error:", error);
         throw error;
     }
 });
+
 
 
 const initialState = {
