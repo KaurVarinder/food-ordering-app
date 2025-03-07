@@ -27,7 +27,7 @@ const Menu = () => {
 
     const onTabSwitch = (newActiveTab) => {
         setActiveTab(newActiveTab);
-        let categories = products.products.map((product) => product.name.name);
+        let categories = products.products?.map((product) => product.name?.name);
         let index = categories.findIndex(category => newActiveTab === category);
         setActiveTabIndex(index > -1 ? index : 0);
     };
