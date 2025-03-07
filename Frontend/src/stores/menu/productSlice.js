@@ -35,16 +35,20 @@
 
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 
-// ✅ Define fetchProducts BEFORE using it in createSlice
+// ✅ Fetch products from API with error handling
 export const fetchProducts = createAsyncThunk('products/fetchProducts', async () => {
-    const response = await fetch('https://food-ordering-app-xg2o.onrender.com/api/products-by-categories');
-    
-    if (!response.ok) {
-        throw new Error("Failed to fetch products");
+    try {
+        const response = await fetch('https://food-ordering-app-xg2o.onrender.com/api/products-by-categories');
+        if (!response.ok) {
+            throw new Error("Failed to fetch products");
+        }
+        const data = await response.json();
+        console.log("Fetched products:", data); // ✅ Debugging log
+        return data?.data || [];  // Ensure it returns an array
+    } catch (error) {
+        console.error("API fetch error:", error);
+        throw error;
     }
-    
-    const data = await response.json();
-    return data?.data || [];  // ✅ Ensure data exists, default to empty array
 });
 
 const initialState = {
@@ -61,20 +65,17 @@ export const productsSlice = createSlice({
         builder
             .addCase(fetchProducts.pending, (state) => {
                 state.status = 'pending';
-                state.error = null;  // ✅ Clear previous errors
             })
             .addCase(fetchProducts.fulfilled, (state, action) => {
                 state.status = 'fulfilled';
-                state.products = action.payload; // ✅ Directly assign the array
+                state.products = action.payload; // ✅ Directly assign API response
             })
             .addCase(fetchProducts.rejected, (state, action) => {
                 state.status = 'failed';
-                state.error = action.error.message || "Something went wrong"; // ✅ Default error message
+                state.error = action.error.message;
             });
     }
 });
 
 export default productsSlice.reducer;
-
-// ✅ Fix: Select only the products array
-export const selectAllProducts = (state) => state.products.products;
+export const selectAllProducts = (state) => state.products;
