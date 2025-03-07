@@ -1,3 +1,6 @@
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
+
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
 import { useSelector, useDispatch } from "react-redux";
@@ -5,7 +8,7 @@ import { cartProducts, clearCart } from "../stores/Cart/cartSlice";  // Import c
 
 const PaymentForm = () => {
     const navigate = useNavigate();
-    const dispatch = useDispatch(); 
+    const dispatch = useDispatch();
     const cart = useSelector(cartProducts); // Get cart items from Redux store
 
     // Calculate total amount from cart
@@ -16,14 +19,19 @@ const PaymentForm = () => {
         const isLoggedIn = localStorage.getItem("isLoggedIn") === "true";
 
         if (!isLoggedIn) {
-            alert("You need to log in first to proceed with payment.");
-            navigate("/login", { state: { from: "/payment" } }); // Redirect to login and return to payment after login
+            toast.error("You need to log in first to proceed with payment.");
+
+            setTimeout(() => {
+                navigate("/login", { state: { from: "/payment" } });
+            }, 5000);
+
             return;
         }
 
+
         try {
             if (totalAmount <= 0) {
-                alert("Cart is empty or invalid amount!");
+                toast.error("Cart is empty.");
                 return;
             }
 
@@ -68,7 +76,7 @@ const PaymentForm = () => {
                 razor.open();
             } else {
                 console.error("Razorpay SDK not loaded.");
-                alert("Payment gateway not available. Please refresh.");
+                toast.error("Payment gateway not available. Please refresh.");
             }
         } catch (error) {
             console.error("Payment error:", error);
@@ -85,6 +93,7 @@ const PaymentForm = () => {
                     PAY ₹{totalAmount}
                 </button>
             </div>
+            <ToastContainer />
         </form>
     );
 };
