@@ -13,7 +13,7 @@ const Login = () => {
   const onSubmit = (data) => {
     setLoading(true);
 
-    fetch("http://localhost:8001/api/login-user", {
+    fetch("https://food-ordering-app-xg2o.onrender.com/api/login-user", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
