@@ -30,7 +30,7 @@ export const ProductPreview = () => {
   };
 
   useEffect(() => {
-    fetch('http://localhost:8001/api/products')
+    fetch('https://food-ordering-app-xg2o.onrender.com/api/products')
       .then(response => response.json())
       .then(data => setProducts(data?.data))
       .catch(e => console.log(e))
