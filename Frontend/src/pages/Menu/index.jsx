@@ -89,30 +89,31 @@ const Menu = () => {
     const onTabSwitch = (newActiveTab) => {
         setActiveTab(newActiveTab);
         
-        // ✅ Fix category name access
-        let categories = products.products.map((category) => category.name || "Unnamed");
-        
+        // ✅ Ensure we extract the correct category names
+        let categories = products.products.map((category) => category.name?.toUpperCase());
+    
         let index = categories.findIndex(category => newActiveTab === category);
         setActiveTabIndex(index > -1 ? index : 0);
     };
     
-
     return (
         <div className="bg-white">
-            {products.status === "pending" && <div>Loading....</div>}
-            {products.status === "failed" && <div>Error: {products.error}</div>}
-            {products.status === "fulfilled" && (
+            {products.status !== "fulfilled" ? (
+                <div>Loading....</div>
+            ) : (
                 <div className="menu-wrapper">
-                    {products.products.length > 0 && (
+                    {products.products && (
                         <Tabs
-                            list={products.products.map((product) => product.name?.name || "Unnamed")}
+                            list={products.products.map((product) => product.name?.toUpperCase() || "CATEGORY")}
                             activeTab={activeTab}
                             onTabSwitch={onTabSwitch}
                         />
                     )}
                     <div className="flex flex-row mx-3">
-                        {products.products.length > 0 &&
-                            products.products[activeTabIndex]?.products?.map((product, index) => (
+                        {products.products &&
+                            products.products.length > 0 &&
+                            products.products[activeTabIndex]?.products &&
+                            products.products[activeTabIndex]?.products.map((product, index) => (
                                 <ProductDetailCard key={index} product={product} onAddProduct={onAddProduct} />
                             ))}
                     </div>
@@ -120,6 +121,7 @@ const Menu = () => {
             )}
         </div>
     );
+    
 };
 
 export default Menu;
