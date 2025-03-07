@@ -14,10 +14,7 @@ const ProductDetailCard = ({ product, onAddProduct }) => {
                 </div>
             </div>
             <div className="w-full flex items-center justify-center">
-                {/* <img src={product.imageUrls} className="w-40 h-40 rounded-xl object-cover" alt={product.name} /> */}
-                <img src={Array.isArray(product.imageUrls) ? product.imageUrls[0] : product.imageUrls}
-                    className="w-40 h-40 rounded-xl object-cover" alt={product.name} />
-
+                <img src={product.imageUrls} className="w-40 h-40 rounded-xl object-cover" alt={product.name} />
             </div>
             <div className="w-full flex items-center justify-center mt-3">
                 <Button onClick={() => onAddProduct(product)}>Add to Cart</Button>
