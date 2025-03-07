@@ -1,3 +1,5 @@
+import { Link } from "react-router-dom";
+
 export const Footer = () => {
     return (
         <footer className="bg-gray-800 text-gray-300">
@@ -6,13 +8,13 @@ export const Footer = () => {
                     <h2 className="mb-6 text-sm font-semibold text-gray-400 uppercase">Company</h2>
                     <ul>
                         <li className="mb-4">
-                            <a href="/about" className="hover:underline">About Us</a>
+                            <Link to="/about" className="hover:underline">About Us</Link>
                         </li>
                         <li className="mb-4">
-                            <a href="/menu" className="hover:underline">Menu</a>
+                            <Link to="/menu" className="hover:underline">Menu</Link>
                         </li>
                         <li className="mb-4">
-                            <a href="/careers" className="hover:underline">Careers</a>
+                            <Link to="/careers" className="hover:underline">Careers</Link>
                         </li>
                     </ul>
                 </div>
@@ -21,13 +23,13 @@ export const Footer = () => {
                     <h2 className="mb-6 text-sm font-semibold text-gray-400 uppercase">Customer Service</h2>
                     <ul>
                         <li className="mb-4">
-                            <a href="/help" className="hover:underline">Help & FAQs</a>
+                            <Link to="/help" className="hover:underline">Help & FAQs</Link>
                         </li>
                         <li className="mb-4">
-                            <a href="/order-tracking" className="hover:underline">Order Tracking</a>
+                            <Link to="/order-tracking" className="hover:underline">Order Tracking</Link>
                         </li>
                         <li className="mb-4">
-                            <a href="/contact-support" className="hover:underline">Contact Support</a>
+                            <Link to="/contact-support" className="hover:underline">Contact Support</Link>
                         </li>
                     </ul>
                 </div>
@@ -36,10 +38,10 @@ export const Footer = () => {
                     <h2 className="mb-6 text-sm font-semibold text-gray-400 uppercase">Legal</h2>
                     <ul>
                         <li className="mb-4">
-                            <a href="/privacy-policy" className="hover:underline">Privacy Policy</a>
+                            <Link to="/privacy-policy" className="hover:underline">Privacy Policy</Link>
                         </li>
                         <li className="mb-4">
-                            <a href="/terms" className="hover:underline">Terms & Conditions</a>
+                            <Link to="/terms" className="hover:underline">Terms & Conditions</Link>
                         </li>
                     </ul>
                 </div>
