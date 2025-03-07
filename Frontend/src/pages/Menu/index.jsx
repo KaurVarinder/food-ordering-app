@@ -14,7 +14,8 @@ const Menu = () => {
 
     useEffect(() => {
         dispatch(fetchProducts());
-    }, [dispatch]);
+        console.log("Products Data:", products);
+    }, [dispatch, products]);
 
     const onAddProduct = (product) => {
         dispatch(addToCart(product));
@@ -22,10 +23,14 @@ const Menu = () => {
 
     const onTabSwitch = (newActiveTab) => {
         setActiveTab(newActiveTab);
-        let categories = products.products.map((product) => product.name.name);
-        let index = categories.findIndex(category => newActiveTab === category);
-        setActiveTabIndex(index > -1 ? index : 0);
+
+        if (products.products) {
+            let categories = products.products.map((category) => category.name); // Corrected structure
+            let index = categories.findIndex(category => newActiveTab === category);
+            setActiveTabIndex(index > -1 ? index : 0);
+        }
     };
+
 
     return (
         <div className="bg-white">
@@ -43,11 +48,13 @@ const Menu = () => {
                     <div className="flex flex-row mx-3">
                         {products.products &&
                             products.products.length > 0 &&
+                            products.products[activeTabIndex] &&
                             products.products[activeTabIndex].products &&
                             products.products[activeTabIndex].products.map((product, index) => (
                                 <ProductDetailCard key={index} product={product} onAddProduct={onAddProduct} />
                             ))}
                     </div>
+
                 </div>
             )}
         </div>
