@@ -1,5 +1,7 @@
 import Button from "./elements/Button"
 import { Link } from "react-router-dom";
+import pizzaBanner from "../assets/images/pizza_banner.jpg";
+
 
 const Banner = () => {
   return (
@@ -19,7 +21,7 @@ const Banner = () => {
         </div>
       </div>
       <div className="banner-image w-full md:w-1/2 p-3 flex justify-end">
-        <img src={require("../assets/images/pizza_banner.jpg")} alt="banner" className="max-h-95 " />
+        <img src={pizzaBanner} alt="banner" className="max-h-95 " />
       </div>
     </div>
   )

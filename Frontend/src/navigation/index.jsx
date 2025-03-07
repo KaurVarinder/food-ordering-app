@@ -1,4 +1,4 @@
-import { BrowserRouter, Route, Routes } from "react-router-dom";
+import { HashRouter, Route, Routes } from "react-router-dom";
 import { Header } from "../components/Header";
 import Home from "../pages/Home";
 import Login from "../pages/Login";
@@ -13,7 +13,7 @@ import { Footer } from "../components/Footer";
 const Navigation = () => {
     const productsInCart = useSelector(cartProducts);
     return (
-        <BrowserRouter>
+        <HashRouter>
             <div className="flex flex-col min-h-screen">
                 <Header cartCount={productsInCart ? productsInCart.length : 0} />
                 <div className="flex-grow"> 
@@ -28,7 +28,7 @@ const Navigation = () => {
                 </div>
                 <Footer />
             </div>
-        </BrowserRouter>
+        </HashRouter>
     )
 }
 
