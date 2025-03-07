@@ -1,5 +1,11 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 
+export const fetchProducts = createAsyncThunk('products/fetchProducts', async () => {
+    const response = await fetch('https://food-ordering-app-xg2o.onrender.com/api/products-by-categories');
+    const data = await response.json();
+    return data;
+})
+
 const initialState = {
     products: [],
     error: null,
@@ -24,11 +30,5 @@ export const productsSlice = createSlice({
 export const { getProducts } = productsSlice.actions
 
 export default productsSlice.reducer
-
-export const fetchProducts = createAsyncThunk('products/fetchProducts', async () => {
-    const response = await fetch('https://food-ordering-app-xg2o.onrender.com/api/products-by-categories');
-    const data = await response.json();
-    return data;
-})
 
 export const selectAllProducts = state => state.products
