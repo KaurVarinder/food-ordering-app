@@ -24,7 +24,7 @@ const app = express();
 
 // Enable CORS
 var corsOptions = {
-    origin: "http://localhost:3000",
+    origin: "https://food-ordering-app-frontend-61bn.onrender.com",
 };
 app.use(cors(corsOptions));
 
