@@ -36,11 +36,11 @@ const PaymentForm = () => {
             }
 
             // Fetch Razorpay Key
-            const { data: keyData } = await axios.get("http://localhost:8001/api/getkey");
+            const { data: keyData } = await axios.get("https://food-ordering-app-xg2o.onrender.com/api/getkey");
             const razorpayKey = keyData.key;
 
             // Create order with correct amount
-            const { data: orderDetails } = await axios.post("http://localhost:8001/api/checkout", {
+            const { data: orderDetails } = await axios.post("https://food-ordering-app-xg2o.onrender.com/api/checkout", {
                 amount: totalAmount
             });
 
@@ -52,7 +52,7 @@ const PaymentForm = () => {
                 description: "Test Transaction",
                 image: "https://example.com/your_logo",
                 order_id: orderDetails.order.id,
-                callback_url: "http://localhost:8001/api/paymentverification",
+                callback_url: "https://food-ordering-app-xg2o.onrender.com/api/paymentverification",
                 prefill: {
                     name: "Gaurav Kumar",
                     email: "gaurav.kumar@example.com",
