@@ -1,11 +1,12 @@
 const mongoose = require('mongoose');
+const dbConfig = require('../db.config'); // Import config
 
 mongoose
-    .connect('mongodb://127.0.0.1:27017/food-ordering', { useNewUrlParser: true })
+    .connect(dbConfig.url, { useNewUrlParser: true, useUnifiedTopology: true }) // Use config URL
     .catch(e => {
-        console.error('Connection error', e.message)
-    })
+        console.error('Connection error', e.message);
+    });
 
-const db = mongoose.connection
+const db = mongoose.connection;
 
-module.exports = db
+module.exports = db;
