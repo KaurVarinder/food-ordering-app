@@ -1,8 +1,9 @@
-const mongoose = require('mongoose');
-const dbConfig = require('../db.config'); // Import config
+require("dotenv").config();
+const mongoose = require("mongoose");
+const dbConfig = require("../db.config");
 
 mongoose
-    .connect(dbConfig.url, { useNewUrlParser: true, useUnifiedTopology: true }) // Use config URL
+    .connect(dbConfig.url, { useNewUrlParser: true, useUnifiedTopology: true })
     .catch(e => {
         console.error('Connection error', e.message);
     });

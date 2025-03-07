@@ -1,7 +1,7 @@
-# Dependencies
+# Node.js dependencies
 node_modules/
 
-# Environment variables
+# Environment variables (keep sensitive data out of Git)
 .env
 .env.local
 .env.development.local
@@ -14,19 +14,30 @@ yarn-debug.log*
 yarn-error.log*
 pm2.log
 pm2.pid
+logs/
+*.log
 
 # Build and generated files
 dist/
 build/
 
-# Cache & Temp files
+# Cache & Temporary files
 .cache/
 tmp/
 *.swp
-*.log
+*.swo
+*.swn
+.DS_Store # macOS system file
+Thumbs.db # Windows system file
 
-# Database and other sensitive files
+# Database & sensitive files
 *.sqlite
 *.sqlite-journal
 dump.rdb
 *.pem
+*.p12
+*.key
+*.crt
+
+# VSCode settings (optional)
+.vscode/
