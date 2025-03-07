@@ -88,7 +88,8 @@ const Menu = () => {
 
     const onTabSwitch = (newActiveTab) => {
         setActiveTab(newActiveTab);
-        let categories = products.products.map((product) => product.name?.name || ""); // ✅ Avoid errors if undefined
+        let categories = products.products.map((product) => product.name?.name || product.name || "Unnamed");
+
         let index = categories.findIndex(category => newActiveTab === category);
         setActiveTabIndex(index > -1 ? index : 0);
     };
