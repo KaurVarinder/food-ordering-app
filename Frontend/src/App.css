@@ -1,48 +1,93 @@
-*{
+* {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
 }
 
-body{
+body {
   overflow-x: hidden;
+  width: 100%;
 }
 
-#root{
+#root {
   height: 100%;
 }
 
-.App{
-  height: 100vh;
+.App {
+  min-height: 100vh;
   background-color: black;
+  display: flex;
+  flex-direction: column;
+}
+
+/* General Styles for Flexbox Layouts */
+.container {
+  width: 90%;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 20px;
+}
+
+/* Navbar */
+.navbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 15px 20px;
+  background: #222;
+  color: white;
+}
+
+.menu-items {
+  display: flex;
+  gap: 20px;
+}
+
+/* Grid Layout */
+.grid-layout {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 20px;
+  margin-top: 20px;
+}
+
+/* Image Responsiveness */
+img {
+  max-width: 100%;
+  height: auto;
+  display: block;
+}
+
+/* Responsive Adjustments */
+@media screen and (max-width: 1024px) {
+  .container {
+    width: 95%;
+  }
 }
 
 @media screen and (max-width: 768px) {
   .App {
-    height: auto; /* Allow content to grow */
-  }
-
-  .container {
-    padding: 10px; /* Add spacing */
+    min-height: auto; /* Let content grow */
   }
 
   .navbar {
-    flex-direction: column; /* Stack navbar items */
+    flex-direction: column;
     align-items: center;
+    padding: 10px 0;
   }
 
   .menu-items {
-    display: flex;
     flex-direction: column;
     gap: 10px;
   }
 
-  .content {
-    text-align: center; /* Center content for mobile */
-  }
-
   .grid-layout {
     display: flex;
-    flex-direction: column; /* Stack grid items */
+    flex-direction: column;
+    gap: 20px;
+  }
+
+  .content {
+    text-align: center;
   }
 }
