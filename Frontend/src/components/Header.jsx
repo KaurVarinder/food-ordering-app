@@ -37,7 +37,7 @@ export const Header = ({ cartCount }) => {
 
 
     return (
-        <nav id="header" className="bg-black text-white">
+        <nav id="header" className="bg-black text-white fixed top-0 left-0 w-full z-50 shadow-md">
             <div className="w-full container mx-auto flex items-center justify-between py-4 px-4">
                 {/* Logo */}
                 <div className="logo-wrapper pl-4 flex items-center">
@@ -77,7 +77,7 @@ export const Header = ({ cartCount }) => {
 
                 {/* Mobile Dropdown - Cart, Login, Sign Up */}
                 {menuOpen && (
-                    <div className="absolute top-20 right-4 w-48 bg-black text-white flex flex-col items-center space-y-4 py-4 md:hidden">
+                    <div className="fixed top-16 right-4 w-48 bg-black text-white flex flex-col items-center space-y-4 py-4 rounded-lg shadow-lg md:hidden">
                         <Link to="/cart" className="relative text-xl">
                             Cart
                             {cartCount > 0 && (
