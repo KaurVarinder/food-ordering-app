@@ -16,7 +16,7 @@ const Menu = () => {
         dispatch(fetchProducts());
     }, [dispatch]);
 
-    console.log("Products state:", products); 
+    console.log("Products state:", products);
 
     const onAddProduct = (product) => {
         dispatch(addToCart(product));
@@ -26,11 +26,11 @@ const Menu = () => {
         setActiveTab(newActiveTab);
 
         let categories = products.products.map((category) => category.name?.toUpperCase());
-    
+
         let index = categories.findIndex(category => newActiveTab === category);
         setActiveTabIndex(index > -1 ? index : 0);
     };
-    
+
     return (
         <div className="bg-white">
             {products.status !== "fulfilled" ? (
@@ -44,7 +44,7 @@ const Menu = () => {
                             onTabSwitch={onTabSwitch}
                         />
                     )}
-                    <div className="flex flex-row mx-3">
+                    <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 mx-3">
                         {products.products &&
                             products.products.length > 0 &&
                             products.products[activeTabIndex]?.products &&
@@ -56,7 +56,7 @@ const Menu = () => {
             )}
         </div>
     );
-    
+
 };
 
 export default Menu;
