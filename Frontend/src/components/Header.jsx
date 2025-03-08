@@ -9,79 +9,56 @@ export const Header = ({ cartCount }) => {
     const [isLoggedIn, setIsLoggedIn] = useState(false);
     const [menuOpen, setMenuOpen] = useState(false);
 
-
     useEffect(() => {
-        // Check login status from localStorage
         const loggedIn = localStorage.getItem("isLoggedIn") === "true";
         setIsLoggedIn(loggedIn);
     }, []);
 
     const handleLogout = () => {
-        localStorage.removeItem("isLoggedIn"); // Clear login status
+        localStorage.removeItem("isLoggedIn");
         setIsLoggedIn(false);
         navigate("/login");
-        window.location.reload(); // Ensure UI updates instantly
+        window.location.reload();
     };
 
-    // Scroll to About Section
     const scrollToAbout = () => {
         if (window.location.pathname !== "/") {
-            navigate("/"); // Navigate to home first
+            navigate("/");
             setTimeout(() => {
                 document.getElementById("about")?.scrollIntoView({ behavior: "smooth" });
-            }, 100); // Delay to ensure home page loads
+            }, 100);
         } else {
             document.getElementById("about")?.scrollIntoView({ behavior: "smooth" });
         }
     };
 
-
     return (
-        <nav id="header" className="bg-black text-white fixed top-0 left-0 w-full z-50 shadow-md">
-            <div className="w-full container mx-auto flex items-center justify-between py-4 px-4">
-                {/* Logo */}
+        <nav id="header" className="bg-black text-white">
+            <div className="w-full container mx-auto flex flex-wrap items-center justify-between mt-0 py-2">
                 <div className="logo-wrapper pl-4 flex items-center">
                     <Link to="/">
-                        <img src={foody} alt="logo" className="w-24 h-24 md:w-40 md:h-40 object-cover" />
+                        <img src={foody} alt="logo" className="w-40 h-40 object-cover" />
                     </Link>
                 </div>
-
-                {/* Home & About - Always Visible */}
-                <div className="flex items-center space-x-6">
+                
+                {/* Home & About (Always Visible) */}
+                <div className="nav-menu-wrapper flex items-center justify-between space-x-10">
                     <Link to="/" className="text-xl">Home</Link>
-                    <button onClick={scrollToAbout} className="text-xl">About</button>
+                    <button onClick={scrollToAbout} className="text-xl cursor-pointer">About</button>
                 </div>
+                
+                {/* Cart, Login, Signup */}
+                <div className="relative">
+                    <button className="md:hidden text-white text-3xl" onClick={() => setMenuOpen(!menuOpen)}>
+                        ☰
+                    </button>
 
-                {/* Mobile Menu Button (for Cart & Auth Links) */}
-                <button className="md:hidden text-white text-3xl" onClick={() => setMenuOpen(!menuOpen)}>
-                    ☰
-                </button>
-
-                {/* Desktop Menu - Always Visible */}
-                <div className="hidden md:flex items-center space-x-6">
-                    <Link to="/cart" className="relative text-xl">
-                        Cart
-                        {cartCount > 0 && (
-                            <div className="absolute -top-2 -right-3 bg-yellow-400 text-white rounded-full text-sm px-2">{cartCount}</div>
-                        )}
-                    </Link>
-                    {isLoggedIn ? (
-                        <Button onClick={handleLogout}>Log Out</Button>
-                    ) : (
-                        <>
-                            <Link to="/login" className="text-xl">Login</Link>
-                            <Link to="/register" className="text-xl">Sign Up</Link>
-                        </>
-                    )}
-                </div>
-
-                {/* Mobile Dropdown - Cart, Login, Sign Up */}
-                {menuOpen && (
-                    <div className="fixed top-16 right-4 w-48 bg-black text-white flex flex-col items-center space-y-4 py-4 rounded-lg shadow-lg md:hidden">
+                    {/* Dropdown Menu */}
+                    <div className={`absolute top-full right-0 bg-black text-white flex flex-col space-y-2 p-4 rounded-lg shadow-lg ${menuOpen ? "block" : "hidden"} md:flex md:relative md:top-0 md:bg-transparent md:p-0 md:space-y-0 md:flex-row md:items-center`}>
                         <Link to="/cart" className="relative text-xl">
                             Cart
                             {cartCount > 0 && (
-                                <div className="absolute -top-2 -right-3 bg-yellow-400 text-white rounded-full text-sm px-2">{cartCount}</div>
+                                <span className="absolute -top-2 -right-3 bg-yellow-400 text-white rounded-full text-sm px-2">{cartCount}</span>
                             )}
                         </Link>
                         {isLoggedIn ? (
@@ -93,9 +70,8 @@ export const Header = ({ cartCount }) => {
                             </>
                         )}
                     </div>
-                )}
+                </div>
             </div>
         </nav>
-
-    )
-}
+    );
+};
