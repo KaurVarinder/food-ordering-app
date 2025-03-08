@@ -16,3 +16,33 @@ body{
   height: 100vh;
   background-color: black;
 }
+
+@media screen and (max-width: 768px) {
+  .App {
+    height: auto; /* Allow content to grow */
+  }
+
+  .container {
+    padding: 10px; /* Add spacing */
+  }
+
+  .navbar {
+    flex-direction: column; /* Stack navbar items */
+    align-items: center;
+  }
+
+  .menu-items {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+  }
+
+  .content {
+    text-align: center; /* Center content for mobile */
+  }
+
+  .grid-layout {
+    display: flex;
+    flex-direction: column; /* Stack grid items */
+  }
+}
