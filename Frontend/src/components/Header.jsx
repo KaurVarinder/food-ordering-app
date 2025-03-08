@@ -37,20 +37,29 @@ export const Header = ({ cartCount }) => {
 
 
     return (
-        <nav className="bg-black text-white">
-            <div className="w-full container mx-auto flex items-center justify-between py-2 px-4">
-                <Link to="/" className="flex items-center">
-                    <img src={foody} alt="logo" className="w-24 h-24 md:w-40 md:h-40 object-cover" />
-                </Link>
+        <nav id="header" className="bg-black text-white">
+            <div className="w-full container mx-auto flex items-center justify-between py-4 px-4">
+                {/* Logo */}
+                <div className="logo-wrapper pl-4 flex items-center">
+                    <Link to="/">
+                        <img src={foody} alt="logo" className="w-24 h-24 md:w-40 md:h-40 object-cover" />
+                    </Link>
+                </div>
 
-                <button className="md:hidden text-white text-2xl" onClick={() => setMenuOpen(!menuOpen)}>
+                {/* Home & About - Always Visible */}
+                <div className="flex items-center space-x-6">
+                    <Link to="/" className="text-xl">Home</Link>
+                    <button onClick={scrollToAbout} className="text-xl">About</button>
+                </div>
+
+                {/* Mobile Menu Button (for Cart & Auth Links) */}
+                <button className="md:hidden text-white text-3xl" onClick={() => setMenuOpen(!menuOpen)}>
                     ☰
                 </button>
 
-                <div className={`md:flex items-center space-x-6 ${menuOpen ? "block" : "hidden"} absolute md:static top-16 left-0 w-full md:w-auto bg-black md:bg-transparent p-4 md:p-0`}>
-                    <Link to="/" className="text-xl block md:inline">Home</Link>
-                    <button onClick={scrollToAbout} className="text-xl block md:inline">About</button>
-                    <Link to="/cart" className="relative block md:inline">
+                {/* Desktop Menu - Always Visible */}
+                <div className="hidden md:flex items-center space-x-6">
+                    <Link to="/cart" className="relative text-xl">
                         Cart
                         {cartCount > 0 && (
                             <div className="absolute -top-2 -right-3 bg-yellow-400 text-white rounded-full text-sm px-2">{cartCount}</div>
@@ -60,11 +69,31 @@ export const Header = ({ cartCount }) => {
                         <Button onClick={handleLogout}>Log Out</Button>
                     ) : (
                         <>
-                            <Link to="/login" className="block md:inline">Login</Link>
-                            <Link to="/register" className="block md:inline">Sign Up</Link>
+                            <Link to="/login" className="text-xl">Login</Link>
+                            <Link to="/register" className="text-xl">Sign Up</Link>
                         </>
                     )}
                 </div>
+
+                {/* Mobile Dropdown - Cart, Login, Sign Up */}
+                {menuOpen && (
+                    <div className="absolute top-20 right-4 w-48 bg-black text-white flex flex-col items-center space-y-4 py-4 md:hidden">
+                        <Link to="/cart" className="relative text-xl">
+                            Cart
+                            {cartCount > 0 && (
+                                <div className="absolute -top-2 -right-3 bg-yellow-400 text-white rounded-full text-sm px-2">{cartCount}</div>
+                            )}
+                        </Link>
+                        {isLoggedIn ? (
+                            <Button onClick={handleLogout}>Log Out</Button>
+                        ) : (
+                            <>
+                                <Link to="/login" className="text-xl">Login</Link>
+                                <Link to="/register" className="text-xl">Sign Up</Link>
+                            </>
+                        )}
+                    </div>
+                )}
             </div>
         </nav>
 
