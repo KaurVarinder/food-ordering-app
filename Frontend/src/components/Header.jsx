@@ -4,10 +4,11 @@ import Button from "./elements/Button";
 import { useNavigate } from "react-router-dom";
 import { useEffect, useState } from "react";
 
-
 export const Header = ({ cartCount }) => {
     const navigate = useNavigate();
     const [isLoggedIn, setIsLoggedIn] = useState(false);
+    const [menuOpen, setMenuOpen] = useState(false);
+
 
     useEffect(() => {
         // Check login status from localStorage
