@@ -3,7 +3,7 @@ import aboutImage from "../assets/images/aboutUs.jpg"
 const About = () => {
   return (
     <div id ="about" className="bg-white">
-        <div className="p-24 grid grid-cols-2">
+        <div className="p-6 md:p-24 grid grid-cols-1 md:grid-cols-2 gap-6">
             <div className="">
                 <h2 className="text-2xl font-medium">
                     About Us
@@ -13,7 +13,7 @@ const About = () => {
                 </p>
             </div>
             <div className="flex items-center justify-center">
-                <img src={aboutImage} alt="" className="w-[400px] h-[400px] object-cover" />
+                <img src={aboutImage} alt="About Us" className="w-full max-w-xs sm:max-w-sm md:w-[400px] md:h-[400px] object-cover rounded-lg" />
             </div>
         </div>
       
