@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 export const Footer = () => {
     return (
         <footer className="bg-gray-800 text-gray-300">
-            <div className="max-w-7xl mx-auto px-4 py-8 grid grid-cols-2 md:grid-cols-4 gap-8">
+            <div className="max-w-7xl mx-auto px-4 py-8 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-8 text-center sm:text-left">
                 <div>
                     <h2 className="mb-6 text-sm font-semibold text-gray-400 uppercase">Company</h2>
                     <ul>
@@ -62,7 +62,7 @@ export const Footer = () => {
                 </div>
             </div>
 
-            <div className="border-t border-gray-700 py-6 px-4 bg-gray-700 flex flex-col md:flex-row md:justify-between md:items-center">
+            <div className="border-t border-gray-700 py-6 px-4 bg-gray-700 flex flex-col md:flex-row md:justify-between md:items-center text-center md:text-left">
                 <span className="text-sm text-gray-300 text-center md:text-left">
                     &copy; 2025 Food Delivery. All Rights Reserved.
                 </span>
