@@ -45,7 +45,7 @@ export const Header = ({ cartCount }) => {
                 </div>
                 <div className="nav-menu-wrapper flex items-center justify-between space-x-10">
                     <Link to="/" className="text-xl">Home</Link>
-                    <button onClick={scrollToAbout} className="text-xl cursor-pointer ml-6 md:ml-0">About</button>
+                    <button onClick={scrollToAbout} className="text-xl cursor-pointer">About</button>
                 </div>
                 <div className="flex items-center justify-center space-x-4 mx-10">
                     <Link to="/cart" className="mr-4 relative">
